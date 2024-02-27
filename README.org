@@ -1,7 +1,0 @@
-* dirtraver
-
-This is a description of my dirtraver.
-
-** Usage
-
-To use my project, run this command: ./dirtraver --verbose
