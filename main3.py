@@ -1,6 +1,7 @@
 import argparse
 import pathlib
 
+
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description="Recursively walk through a directory and gather absolute paths of files"
@@ -21,6 +22,7 @@ def parse_arguments():
     )
     return parser.parse_args()
 
+
 def get_files(path, max_depth=None, current_depth=0):
     files = []
     for file_path in pathlib.Path(path).iterdir():
@@ -29,6 +31,7 @@ def get_files(path, max_depth=None, current_depth=0):
         elif file_path.is_dir() and (max_depth is None or current_depth < max_depth):
             files.extend(get_files(file_path, max_depth, current_depth + 1))
     return files
+
 
 def filter_files(files, exclusions, inclusions):
     filtered_files = []
@@ -40,12 +43,14 @@ def filter_files(files, exclusions, inclusions):
             filtered_files.append(file_path)
     return filtered_files
 
+
 def main():
     args = parse_arguments()
     files = get_files(args.path, args.depth)
     filtered_files = filter_files(files, args.exclude, args.include)
     for file in filtered_files:
         print(file)
+
 
 if __name__ == "__main__":
     main()
